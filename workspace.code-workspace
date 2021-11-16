@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../supervised-learning"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../deep-learning"
+		}
+	],
+	"settings": {}
+}
