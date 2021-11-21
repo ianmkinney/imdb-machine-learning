@@ -17,7 +17,7 @@ def home():
 
 @app.route("/mock/", methods=['post', 'get'])
 def mock():
-    movie = []
+    movie = dict()
     if request.method == 'POST':
         movie['title'] = "Loading..."
         movie['rating'] = "Loading..."
