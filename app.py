@@ -2,7 +2,7 @@ from flask import Flask
 from flask.templating import render_template
 import get_movie
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 homepage_movies = "Dune, The Junior Defenders, Tortilla Heaven"
 movies_list = homepage_movies.split(", ")
