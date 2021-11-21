@@ -2,7 +2,6 @@ import requests
 import json
 import pandas as pd
 import os
-import api_key
 
 actor_data = pd.read_csv("static/data/actors.csv")
 director_data = pd.read_csv("static/data/directors.csv")
@@ -10,7 +9,7 @@ writer_data = pd.read_csv("static/data/writers.csv")
 
 headers = {
         'x-rapidapi-host': "imdb8.p.rapidapi.com",
-        'x-rapidapi-key': api_key.key
+        'x-rapidapi-key': os.environ['API_KEY']
         }
 
 
@@ -131,18 +130,38 @@ def add_prediction(values):
             value_list.append(0)
 
     # Extract actor numbers
-    actor_1_number = actor_data[actor_data['actor_name'] == values['actor_1']]
-    actor_1_number = actor_1_number['actor_number'].values[0]
-    actor_2_number = actor_data[actor_data['actor_name'] == values['actor_1']]
-    actor_2_number = actor_2_number['actor_number'].values[0]
+    try: 
+        actor_1_number = actor_data[actor_data['actor_name'] == values['actor_1']]
+        actor_1_number = actor_1_number['actor_number'].values[0]
+        actor_2_number = actor_data[actor_data['actor_name'] == values['actor_1']]
+        actor_2_number = actor_2_number['actor_number'].values[0]
+    except ValueError:
+        print("Actor not found in database!")
+        actor_1_number = 0
+        actor_1_number = actor_1_number['actor_number'].values[0]
+        actor_2_number = 0
+        actor_2_number = actor_2_number['actor_number'].values[0]
+    
+
 
     # Extract director number
-    director_number = director_data[director_data['lead_director'] == values['director']]
-    director_number = director_number['director_number'].values[0]
+    try: 
+        director_number = director_data[director_data['lead_director'] == values['director']]
+        director_number = director_number['director_number'].values[0]
+    except ValueError: 
+        print("Director not found in database!")
+        director_number = 0
+        director_number = director_number['director_number'].values[0]
 
     # Extract Writer Number
-    writer_number = writer_data[writer_data['lead_writer'] == values['writer']]
-    writer_number = writer_number['writer_number'].values[0]
+    try: 
+        writer_number = writer_data[writer_data['lead_writer'] == values['writer']]
+        writer_number = writer_number['writer_number'].values[0]
+    except ValueError: 
+        print("Writer not found in database!")
+        writer_number = 0
+        writer_number = writer_number['writer_number'].values[0]
+
 
     movie_x = [[values['year'], actor_1_number, actor_2_number, director_number, writer_number, values['budget'], values['duration'], 
     value_list[0], value_list[1], value_list[2], value_list[3], value_list[4], value_list[5], value_list[6], value_list[7], value_list[8],

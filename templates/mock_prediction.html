@@ -38,10 +38,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="/">Current Movies</a></li>
-        <li class="active"><a href="/mock">Mock Prediction</a></li>
-        <li><a href="#">Dataset</a></li>
-        <li><a href="#">IMDB Data</a></li>
-        <li><a href="#">Contact</a></li>
+        <li class="active"><a href="/mock">Predict Movie</a></li>
+        <li><a href="#">Visualizations</a></li>
       </ul>
     </div>
   </div>
@@ -51,16 +49,22 @@
   <div class="row">
     <div class="col-md-4">
       <div class="panel panel-primary">
-        <div class="panel-heading">CURRENT MOVIE</div>
+        <div class="panel-heading">Enter Title Here</div>
         <div class="panel-body">
-            <form>
-                <label for="title">Title:</label><br>
+            <form action="" method="post">
+                <label for="title">Title:</label>
                 <input type="text" id="title" name="title"><br>
-                <label for="length">Length:</label><br>
+                <input type="submit">
             </form>
         </div>
       </div>
     </div>
+    <div class="col-sm-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">{{ movie[0]['title'] }}</div>
+        <div class="panel-body"><img src={{ movie[0]['image_url'] }} class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">Predicted Rating: {{movie[0]['rating']}} IMDB Rating: {{movie[0]['predicted_rating']}}</div>
+      </div>
   </div>
 </div><br>
 
