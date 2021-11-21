@@ -4,7 +4,7 @@ import get_movie
 
 app = Flask(__name__, template_folder='templates')
 
-homepage_movies = "Dune, The Junior Defenders, Tortilla Heaven"
+homepage_movies = "Dune, Shang Chi, 13 Minutes"
 movies_list = homepage_movies.split(", ")
 movies = []
 for movie in movies_list:
@@ -15,7 +15,7 @@ def home():
 
     return render_template("homepage.html", movies=movies)
 
-@app.route("/mock", methods=['post', 'get'])
+@app.route("/mock/", methods=['post', 'get'])
 def mock():
     movie = []
     if request.method == 'POST': 

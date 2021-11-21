@@ -59,12 +59,14 @@
         </div>
       </div>
     </div>
+    {% if movie %}
     <div class="col-sm-4">
       <div class="panel panel-primary">
         <div class="panel-heading">{{ movie[0]['title'] }}</div>
         <div class="panel-body"><img src={{ movie[0]['image_url'] }} class="img-responsive" style="width:100%" alt="Image"></div>
         <div class="panel-footer">Predicted Rating: {{movie[0]['rating']}} IMDB Rating: {{movie[0]['predicted_rating']}}</div>
       </div>
+      {% endif %}
   </div>
 </div><br>
 
