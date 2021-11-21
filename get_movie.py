@@ -152,3 +152,8 @@ def add_prediction(values):
     values['predicted_rating'] = model.predict(movie_x)[0].round(1)
 
     return values
+
+def get_movie_data(query):
+    values = get_meta_data(query)
+    values = add_prediction(values)
+    return values
