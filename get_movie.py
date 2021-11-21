@@ -135,7 +135,7 @@ def add_prediction(values):
         actor_1_number = actor_1_number['actor_number'].values[0]
         actor_2_number = actor_data[actor_data['actor_name'] == values['actor_1']]
         actor_2_number = actor_2_number['actor_number'].values[0]
-    except ValueError:
+    except IndexError:
         print("Actor not found in database!")
         actor_1_number = 0
         actor_2_number = 0
@@ -146,7 +146,7 @@ def add_prediction(values):
     try: 
         director_number = director_data[director_data['lead_director'] == values['director']]
         director_number = director_number['director_number'].values[0]
-    except ValueError: 
+    except IndexError: 
         print("Director not found in database!")
         director_number = 0
 
@@ -154,7 +154,7 @@ def add_prediction(values):
     try: 
         writer_number = writer_data[writer_data['lead_writer'] == values['writer']]
         writer_number = writer_number['writer_number'].values[0]
-    except ValueError: 
+    except IndexError: 
         print("Writer not found in database!")
         writer_number = 0
 
