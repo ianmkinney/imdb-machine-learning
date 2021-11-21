@@ -12,8 +12,8 @@ def home():
 
     return render_template("homepage.html", movies=movies)
 
-@app.route("/mock/", methods=['post', 'get'])
-def mock():
+@app.route("/predict/", methods=['post', 'get'])
+def predict():
     movie = dict()
     if request.method == 'POST':
         movie['title'] = "Loading..."
@@ -23,7 +23,7 @@ def mock():
         title = request.form.get('title')
         movie = get_movie.get_movie_data(title)
 
-    return render_template("mock_prediction.html", movie=movie)
+    return render_template("preidct_movie.html", movie=movie)
 
 @app.route("/visuals")
 def visuals():
