@@ -1,14 +1,11 @@
 from flask import Flask, request
 from flask.templating import render_template
 import get_movie
+import pandas as pd
 
 app = Flask(__name__, template_folder='templates')
 
-homepage_movies = "Dune, Shang Chi, 13 Minutes, tick,tick...BOOM, Home sweet alone, Free Guy"
-movies_list = homepage_movies.split(", ")
-movies = []
-for movie in movies_list:
-    movies.append(get_movie.get_movie_data(movie))
+movies = pd.read_csv("static/data/homescreen_movies.csv")
 
 @app.route("/")
 def home():
