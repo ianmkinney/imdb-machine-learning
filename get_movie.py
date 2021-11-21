@@ -7,7 +7,7 @@ actor_data = pd.read_csv("data/actors.csv")
 director_data = pd.read_csv("data/directors.csv")
 writer_data = pd.read_csv("data/writers.csv")
 
-api_key = os.environ['API_KEY']
+api_key = os.environ.get('API_KEY')
 
 headers = {
         'x-rapidapi-host': "imdb8.p.rapidapi.com",
