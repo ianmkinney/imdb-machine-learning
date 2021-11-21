@@ -23,7 +23,7 @@ def predict():
         title = request.form.get('title')
         movie = get_movie.get_movie_data(title)
 
-    return render_template("preidct_movie.html", movie=movie)
+    return render_template("predict_movie.html", movie=movie)
 
 @app.route("/visuals")
 def visuals():
