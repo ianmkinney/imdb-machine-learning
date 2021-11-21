@@ -138,9 +138,7 @@ def add_prediction(values):
     except ValueError:
         print("Actor not found in database!")
         actor_1_number = 0
-        actor_1_number = actor_1_number['actor_number'].values[0]
         actor_2_number = 0
-        actor_2_number = actor_2_number['actor_number'].values[0]
     
 
 
@@ -151,7 +149,6 @@ def add_prediction(values):
     except ValueError: 
         print("Director not found in database!")
         director_number = 0
-        director_number = director_number['director_number'].values[0]
 
     # Extract Writer Number
     try: 
@@ -160,7 +157,6 @@ def add_prediction(values):
     except ValueError: 
         print("Writer not found in database!")
         writer_number = 0
-        writer_number = writer_number['writer_number'].values[0]
 
 
     movie_x = [[values['year'], actor_1_number, actor_2_number, director_number, writer_number, values['budget'], values['duration'], 
