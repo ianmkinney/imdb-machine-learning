@@ -77,10 +77,15 @@ def get_meta_data(query):
     values['duration'] = duration
     year = response_json[imdb_id]['title']['year']
     values['year'] = year
-    rating = response_json[imdb_id]['ratings']['rating']
-    values['rating'] = rating
-    ratingCount = response_json[imdb_id]['ratings']['ratingCount']
-    values['ratingCount'] = ratingCount
+    try:
+        rating = response_json[imdb_id]['ratings']['rating']
+        values['rating'] = rating
+        ratingCount = response_json[imdb_id]['ratings']['ratingCount']
+        values['ratingCount'] = ratingCount
+    except KeyError:
+        print("No Rating for this Movie yet!")
+        values['rating'] = "None"
+        values['ratingCount'] = "None"
     genres = ""
     for genre in response_json[imdb_id]['genres']:
         genres = genres + genre + ", "
