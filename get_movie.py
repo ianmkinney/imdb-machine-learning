@@ -9,7 +9,7 @@ writer_data = pd.read_csv("static/data/writers.csv")
 
 headers = {
         'x-rapidapi-host': "imdb8.p.rapidapi.com",
-        'x-rapidapi-key': os.environ['API_KEY']
+        'x-rapidapi-key': "bdc2d05badmsh9afadba2f12e067p1e1e49jsn9596022c7263"
         }
 
 
@@ -46,14 +46,20 @@ def add_money(values, imdb_id):
 
     url = "https://imdb8.p.rapidapi.com/title/get-business"
 
-    querystring = {"tconst":"tt0796366"}
+    querystring = {"tconst":imdb_id}
 
     response = requests.request("GET", url, headers=headers, params=querystring)
     response_json = json.loads(response.text)
-    budget = response_json['resource']['budget']['amount']
-    gross = response_json['resource']['gross']['aggregations'][0]['total']['amount']
-    values['budget'] = budget
-    values['income'] = gross
+    try: 
+        budget = response_json['resource']['budget']['amount']
+        gross = response_json['resource']['gross']['aggregations'][0]['total']['amount']
+        values['budget'] = budget
+        values['income'] = gross
+    except KeyError:
+        print("No buget/income information for this movie yet")
+        values['budget'] = 0
+        values['income'] = 0
+
     return values
 
 
@@ -138,15 +144,16 @@ def add_prediction(values):
     try: 
         actor_1_number = actor_data[actor_data['actor_name'] == values['actor_1']]
         actor_1_number = actor_1_number['actor_number'].values[0]
-        actor_2_number = actor_data[actor_data['actor_name'] == values['actor_1']]
+    except IndexError:
+        print("Actor 1 not found in database!")
+        actor_1_number = 0
+    try:
+        actor_2_number = actor_data[actor_data['actor_name'] == values['actor_2']]
         actor_2_number = actor_2_number['actor_number'].values[0]
     except IndexError:
-        print("Actor not found in database!")
-        actor_1_number = 0
+        print("Actor 2 not found in database!")
         actor_2_number = 0
     
-
-
     # Extract director number
     try: 
         director_number = director_data[director_data['lead_director'] == values['director']]
