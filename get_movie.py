@@ -2,16 +2,15 @@ import requests
 import json
 import pandas as pd
 import os
+import api_key
 
 actor_data = pd.read_csv("static/data/actors.csv")
 director_data = pd.read_csv("static/data/directors.csv")
 writer_data = pd.read_csv("static/data/writers.csv")
 
-api_key = os.environ['API_KEY']
-
 headers = {
         'x-rapidapi-host': "imdb8.p.rapidapi.com",
-        'x-rapidapi-key': api_key
+        'x-rapidapi-key': api_key.key
         }
 
 
