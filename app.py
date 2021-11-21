@@ -4,7 +4,7 @@ import get_movie
 
 app = Flask(__name__, template_folder='templates')
 
-homepage_movies = "Dune, Shang Chi, 13 Minutes"
+homepage_movies = "Dune, Shang Chi, 13 Minutes, tick, tick... BOOM, Home sweet alone, Free Guy"
 movies_list = homepage_movies.split(", ")
 movies = []
 for movie in movies_list:
