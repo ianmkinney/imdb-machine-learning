@@ -18,7 +18,10 @@ def home():
 @app.route("/mock/", methods=['post', 'get'])
 def mock():
     movie = []
-    if request.method == 'POST': 
+    if request.method == 'POST':
+        movie['title'] = "Loading..."
+        movie['rating'] = "Loading..."
+        movie['predicted_rating'] = "Loading..."
         title = request.form.get('title')
         movie = get_movie.get_movie_data(title)
 
