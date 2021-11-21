@@ -63,7 +63,7 @@
     <div class="col-sm-4">
       <div class="panel panel-primary">
         <div class="panel-heading">{{ movie['title'] }}</div>
-        <div class="panel-body"><img src={{ movie[0]['image_url'] }} class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-body"><img src={{ movie['image_url'] }} class="img-responsive" style="width:100%" alt="Image"></div>
         <div class="panel-footer">Predicted Rating: {{movie['predicted_rating']}} IMDB Rating: {{movie['rating']}}</div>
       </div>
       {% endif %}
