@@ -96,7 +96,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-learning_df = pd.read_csv("data/learning_sample.csv")
+learning_df = pd.read_csv("static/data/learning_sample.csv")
 
 model = LinearRegression()
 
