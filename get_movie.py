@@ -1,12 +1,18 @@
 import requests
 import json
 import pandas as pd
+import os
 
 actor_data = pd.read_csv("data/actors.csv")
 director_data = pd.read_csv("data/directors.csv")
 writer_data = pd.read_csv("data/writers.csv")
 
+api_key = os.environ['API_KEY']
 
+headers = {
+        'x-rapidapi-host': "imdb8.p.rapidapi.com",
+        'x-rapidapi-key': api_key
+        }
 
 
 def get_id(search_title): 
@@ -14,11 +20,6 @@ def get_id(search_title):
     url = "https://imdb8.p.rapidapi.com/auto-complete"
 
     querystring = {"q":search_title}
-
-    headers = {
-        'x-rapidapi-host': "imdb8.p.rapidapi.com",
-        'x-rapidapi-key': "bdc2d05badmsh9afadba2f12e067p1e1e49jsn9596022c7263"
-        }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
 
@@ -32,11 +33,6 @@ def add_people(values, imdb_id):
     url = "https://imdb8.p.rapidapi.com/title/get-full-credits"
 
     querystring = {"tconst":imdb_id}
-
-    headers = {
-        'x-rapidapi-host': "imdb8.p.rapidapi.com",
-        'x-rapidapi-key': "bdc2d05badmsh9afadba2f12e067p1e1e49jsn9596022c7263"
-        }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
     response_json = json.loads(response.text)
@@ -54,11 +50,6 @@ def add_money(values, imdb_id):
 
     querystring = {"tconst":"tt0796366"}
 
-    headers = {
-        'x-rapidapi-host': "imdb8.p.rapidapi.com",
-        'x-rapidapi-key': "bdc2d05badmsh9afadba2f12e067p1e1e49jsn9596022c7263"
-        }
-
     response = requests.request("GET", url, headers=headers, params=querystring)
     response_json = json.loads(response.text)
     budget = response_json['resource']['budget']['amount']
@@ -75,11 +66,6 @@ def get_meta_data(query):
     imdb_id = get_id(query)
 
     querystring = {"ids":imdb_id,"region":"US"}
-
-    headers = {
-        'x-rapidapi-host': "imdb8.p.rapidapi.com",
-        'x-rapidapi-key': "bdc2d05badmsh9afadba2f12e067p1e1e49jsn9596022c7263"
-        }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
     response_json = json.loads(response.text)
