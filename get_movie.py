@@ -3,11 +3,11 @@ import json
 import pandas as pd
 import os
 
-actor_data = pd.read_csv("data/actors.csv")
-director_data = pd.read_csv("data/directors.csv")
-writer_data = pd.read_csv("data/writers.csv")
+actor_data = pd.read_csv("static/data/actors.csv")
+director_data = pd.read_csv("static/data/directors.csv")
+writer_data = pd.read_csv("static/data/writers.csv")
 
-api_key = os.environ.get('API_KEY')
+api_key = os.environ['API_KEY']
 
 headers = {
         'x-rapidapi-host': "imdb8.p.rapidapi.com",
