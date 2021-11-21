@@ -52,13 +52,16 @@ def add_money(values, imdb_id):
     response_json = json.loads(response.text)
     try: 
         budget = response_json['resource']['budget']['amount']
-        gross = response_json['resource']['gross']['aggregations'][0]['total']['amount']
         values['budget'] = budget
+    except KeyError:
+        print("No budget information for this movie yet")
+        values['budget'] = 65000000
+    try:
+        gross = response_json['resource']['gross']['aggregations'][0]['total']['amount']
         values['income'] = gross
     except KeyError:
-        print("No buget/income information for this movie yet")
-        values['budget'] = 0
-        values['income'] = 0
+        print("No income information for this movie yet")
+        values['income'] = 'Not Available'
 
     return values
 
