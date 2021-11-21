@@ -28,6 +28,10 @@ def mock():
 
     return render_template("mock_prediction.html", movie=movie)
 
+@app.route("/visuals")
+def visuals():
+    return render_template("visualizations.html")
+
 
 
 if __name__ == '__main__':

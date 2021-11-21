@@ -74,5 +74,31 @@
   </div>
 </div><br>
 
+<div class="container">    
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">{{ movies[3]['title'] }}</div>
+        <div class="panel-body"><img src={{ movies[3]['image_url'] }} class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">Predicted Rating: {{movies[3]['predicted_rating']}} IMDB Rating: {{movies[3]['rating']}}</div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">{{ movies[4]['title'] }}</div>
+        <div class="panel-body"><img src={{ movies[4]['image_url'] }} class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">Predicted Rating: {{movies[4]['predicted_rating']}} IMDB Rating: {{movies[4]['rating']}}</div>
+      </div>
+    </div>
+    <div class="col-sm-4"> 
+      <div class="panel panel-primary">
+        <div class="panel-heading">{{ movies[5]['title'] }}</div>
+        <div class="panel-body"><img src={{ movies[5]['image_url'] }} class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">Predicted Rating: {{movies[5]['predicted_rating']}} IMDB Rating: {{movies[5]['rating']}}</div>
+      </div>
+    </div>
+  </div>
+</div><br>
+
 </body>
 </html>
