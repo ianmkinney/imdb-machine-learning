@@ -130,13 +130,6 @@ X_train_scaled
 
 model.fit(X_train_scaled, y_train)
 
-y=learning_df['avg_vote']
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
-
-
-clf = RandomForestClassifier(random_state=1, n_estimators=500).fit(X_train_scaled, y_train)
-
 def add_prediction(values):
 
     # Prepare genre number array
