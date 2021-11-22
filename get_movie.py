@@ -9,7 +9,7 @@ writer_data = pd.read_csv("static/data/writers.csv")
 
 headers = {
         'x-rapidapi-host': "imdb8.p.rapidapi.com",
-        'x-rapidapi-key': os.environ['API_KEY']
+        'x-rapidapi-key': 'bdc2d05badmsh9afadba2f12e067p1e1e49jsn9596022c7263'
         }
 
 
@@ -106,29 +106,9 @@ def get_meta_data(query):
     values = add_money(values, imdb_id)
     return values
 
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.ensemble import RandomForestClassifier
+import model
 
-learning_df = pd.read_csv("static/data/learning_sample.csv")
-
-model = LinearRegression()
-
-y=learning_df['avg_vote']
-X=learning_df[['year', 'lead_number', 'support_number', 'director_number', 'writer_number', 'budget', 'duration', '0_Action', '0_Adventure', '0_Animation',
-       '0_Biography', '0_Comedy', '0_Crime', '0_Drama', '0_Family',
-       '0_Fantasy', '0_History', '0_Horror', '0_Music', '0_Musical',
-       '0_Mystery', '0_News', '0_Romance', '0_Sci-Fi', '0_Sport', '0_Thriller',
-       '0_War', '0_Western']]
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
-
-scaler = StandardScaler().fit(X_train)
-X_train_scaled = scaler.transform(X_train)
-X_train_scaled
-
-model.fit(X_train_scaled, y_train)
+log_model = model.imdb_log()
 
 def add_prediction(values):
 
@@ -178,7 +158,9 @@ def add_prediction(values):
     value_list[9], value_list[10], value_list[11], value_list[12], value_list[13], value_list[14], value_list[15], value_list[16], value_list[17], 
     value_list[18], value_list[19], value_list[20]]]
 
-    values['predicted_rating'] = model.predict(movie_x)[0].round(1)
+    print(log_model.predict(movie_x))
+
+    values['predicted_rating'] = log_model.predict(movie_x)[0].round(1)
 
     
     return values
