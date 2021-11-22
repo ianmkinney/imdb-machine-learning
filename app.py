@@ -19,6 +19,7 @@ def predict():
         movie['title'] = "Loading..."
         movie['rating'] = "Loading..."
         movie['predicted_rating'] = "Loading..."
+        movie['income'] = "Loading..."
         movie['image_url'] = ""
         title = request.form.get('title')
         movie = get_movie.get_movie_data(title)

@@ -9,7 +9,7 @@ writer_data = pd.read_csv("static/data/writers.csv")
 
 headers = {
         'x-rapidapi-host': "imdb8.p.rapidapi.com",
-        'x-rapidapi-key': "bdc2d05badmsh9afadba2f12e067p1e1e49jsn9596022c7263"
+        'x-rapidapi-key': os.environ['API_KEY']
         }
 
 
@@ -55,6 +55,7 @@ def add_money(values, imdb_id):
         values['budget'] = budget
     except KeyError:
         print("No budget information for this movie yet")
+        # Average budget for a full feature film. Need to put something in other than zero so it doesn't hurt the rating durastically if the value is missing
         values['budget'] = 65000000
     try:
         gross = response_json['resource']['gross']['aggregations'][0]['total']['amount']
@@ -108,6 +109,7 @@ def get_meta_data(query):
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
 
 learning_df = pd.read_csv("static/data/learning_sample.csv")
 
@@ -126,10 +128,14 @@ scaler = StandardScaler().fit(X_train)
 X_train_scaled = scaler.transform(X_train)
 X_train_scaled
 
-X_test_scaled = scaler.transform(X_test)
-X_test_scaled
+model.fit(X_train_scaled, y_train)
 
-model.fit(X_train, y_train)
+y=learning_df['avg_vote']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
+
+
+clf = RandomForestClassifier(random_state=1, n_estimators=500).fit(X_train_scaled, y_train)
 
 def add_prediction(values):
 
@@ -181,6 +187,7 @@ def add_prediction(values):
 
     values['predicted_rating'] = model.predict(movie_x)[0].round(1)
 
+    
     return values
 
 def get_movie_data(query):
