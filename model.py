@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
 
-def imdb_log():
+def imdb_linear():
 
     learning_df = pd.read_csv("static/data/learning_sample.csv")
 
@@ -23,5 +23,8 @@ def imdb_log():
     X_train_scaled
 
     model.fit(X_train, y_train)
+
+    print(f'Training Score: {model.score(X_train, y_train)}')
+    print(f'Testing Score: {model.score(X_test, y_test)}')
 
     return model

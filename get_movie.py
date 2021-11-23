@@ -108,7 +108,7 @@ def get_meta_data(query):
 
 import model
 
-log_model = model.imdb_log()
+linear_model = model.imdb_linear()
 
 def add_prediction(values):
 
@@ -158,9 +158,7 @@ def add_prediction(values):
     value_list[9], value_list[10], value_list[11], value_list[12], value_list[13], value_list[14], value_list[15], value_list[16], value_list[17], 
     value_list[18], value_list[19], value_list[20]]]
 
-    print(log_model.predict(movie_x))
-
-    values['predicted_rating'] = log_model.predict(movie_x)[0].round(1)
+    values['predicted_rating'] = linear_model.predict(movie_x)[0].round(1)
 
     
     return values

@@ -22,6 +22,9 @@ def predict():
         movie['income'] = "Loading..."
         movie['image_url'] = ""
         title = request.form.get('title')
+        if(title == ""):
+            message="Title field can not be left blank!"
+            return render_template("predict_movie.html", message=message)
         movie = get_movie.get_movie_data(title)
 
     return render_template("predict_movie.html", movie=movie)
