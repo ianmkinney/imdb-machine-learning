@@ -9,7 +9,7 @@ writer_data = pd.read_csv("static/data/writers.csv")
 
 headers = {
         'x-rapidapi-host': "imdb8.p.rapidapi.com",
-        'x-rapidapi-key': 'bdc2d05badmsh9afadba2f12e067p1e1e49jsn9596022c7263'
+        'x-rapidapi-key': os.environ['API_KEY']
         }
 
 
